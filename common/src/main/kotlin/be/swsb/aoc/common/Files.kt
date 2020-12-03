@@ -1,7 +1,7 @@
 package be.swsb.aoc.common
 
 object Files {
-    fun readLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)
+    fun readLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)!!
             .bufferedReader()
             .readLines()
             .filterNot { it.isBlank() }
@@ -9,7 +9,7 @@ object Files {
     inline fun <reified R> readLinesAs(fileName: String, stringConverter: (String) -> R) : List<R> =
         readLines(fileName).map(stringConverter)
 
-    fun csvLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)
+    fun csvLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)!!
             .bufferedReader()
             .readLines()
             .filterNot { it.isBlank() }
