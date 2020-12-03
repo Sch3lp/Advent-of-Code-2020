@@ -1,6 +1,6 @@
-package be.swsb.aoc2020.common
+package be.swsb.aoc.common
 
-import be.swsb.aoc2019.common.Position.Companion.at
+import be.swsb.aoc.common.Position.Companion.at
 import java.io.Serializable
 
 data class Quadrants<out T>(
