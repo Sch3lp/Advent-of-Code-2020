@@ -4,12 +4,8 @@ import be.swsb.aoc.common.filterNotNull
 import java.lang.RuntimeException
 
 
-fun List<String>.toPassportStrings() = this.joinToString(separator = " ") { if (it.isEmpty()) "[newpassport]" else it }
-    .split("[newpassport]")
-    .map(String::trim)
-
-fun List<String>.toPassports() = this.toPassportStrings().map(Passport.Companion::fromString)
-fun List<String>.toValidatablePassports() = this.toPassportStrings().map(ValidatablePassport.Companion::fromString)
+fun List<String>.toPassports() = this.toStringGroups().map(Passport.Companion::fromString)
+fun List<String>.toValidatablePassports() = this.toStringGroups().map(ValidatablePassport.Companion::fromString)
 
 data class Passport(
     private val _passportID: String? = null, //pid

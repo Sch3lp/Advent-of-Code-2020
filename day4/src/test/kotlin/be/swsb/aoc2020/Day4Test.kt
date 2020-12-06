@@ -5,8 +5,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import java.lang.RuntimeException
-import java.lang.StringBuilder
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class Day4Test {
@@ -46,7 +44,7 @@ byr:1937 iyr:2017 cid:147 hgt:183cm
 
 iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
 hcl:#cfa07d byr:1929
-            """.trimIndent().lines().toPassportStrings()
+            """.trimIndent().lines().toStringGroups()
 
             assertThat(lines).isEqualTo(
                 listOf(
@@ -57,7 +55,7 @@ hcl:#cfa07d byr:1929
         }
         @Test
         internal fun `toPassportStrings from inputFile`() {
-            val lines = Files.readLinesIncludingBlanks("input.txt").toPassportStrings()
+            val lines = Files.readLinesIncludingBlanks("input.txt").toStringGroups()
 
             assertThat(lines).isEqualTo(
                 listOf(
