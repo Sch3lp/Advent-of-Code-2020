@@ -1,10 +1,12 @@
 package be.swsb.aoc.common
 
 object Files {
-    fun readLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)!!
+    fun readLines(fileName: String): List<String> = readLinesIncludingBlanks(fileName)
+            .filterNot { it.isBlank() }
+
+    fun readLinesIncludingBlanks(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)!!
             .bufferedReader()
             .readLines()
-            .filterNot { it.isBlank() }
 
     inline fun <reified R> readLinesAs(fileName: String, lineConverter: (String) -> R) : List<R> =
         readLines(fileName).map(lineConverter)
