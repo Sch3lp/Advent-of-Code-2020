@@ -1,6 +1,8 @@
 package be.swsb.aoc2020
 
 import be.swsb.aoc.common.Files
+import be.swsb.aoc.common.debug
+import be.swsb.aoc.common.enableDebugging
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -14,7 +16,7 @@ class Day6Test {
 
         @Test
         fun `solve exercise 1 - test input`() {
-            val stuff = Files.readLinesIncludingBlanks("input.txt")
+            val stuff = Files.readLinesIncludingBlanks("input.txt").toStringGroups()
 
             assertThat(solve1(stuff)).isEqualTo(3 + 3 + 3 + 1 + 1).isEqualTo(11)
         }
@@ -42,5 +44,6 @@ class Day6Test {
 }
 
 fun solve1(answers: List<String>): Int {
-    return 0
+    enableDebugging()
+    return answers.debug { println(it) }.size
 }
