@@ -45,6 +45,8 @@ data class Position(val x: Int, val y: Int) {
     companion object {
         fun at(x: Int, y: Int): Position = Position(x, y)
     }
+
+    infix operator fun plus(other: Position): Position = this.copy(x = this.x + other.x, y= this.y + other.y)
 }
 
 infix fun Position.until(other: Position): Positions {

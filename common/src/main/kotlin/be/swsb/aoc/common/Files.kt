@@ -6,8 +6,8 @@ object Files {
             .readLines()
             .filterNot { it.isBlank() }
 
-    inline fun <reified R> readLinesAs(fileName: String, stringConverter: (String) -> R) : List<R> =
-        readLines(fileName).map(stringConverter)
+    inline fun <reified R> readLinesAs(fileName: String, lineConverter: (String) -> R) : List<R> =
+        readLines(fileName).map(lineConverter)
 
     fun csvLines(fileName: String): List<String> = object{}.javaClass.classLoader.getResourceAsStream(fileName)!!
             .bufferedReader()

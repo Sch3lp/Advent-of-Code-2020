@@ -1,32 +1,38 @@
 package be.swsb.aoc2020
 
+import GeoLine
+import LocalGeology
+import Slope
 import be.swsb.aoc.common.Files
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import solve1
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class Day3Test {
+class DayTest {
 
     @Nested
     inner class Exercise1 {
 
         @Test
         fun `solve exercise 1 - test input`() {
-            val stuff = Files.readLinesAs("input.txt", String::toInt)
-
-            assertThat(true).isFalse()
+            val geolines : List<GeoLine> = Files.readLinesAs("input.txt", String::toGeoLine)
+            val localMap = LocalGeology(geolines)
+            assertThat(solve1(localMap, Slope(1, 3))).isEqualTo(7)
         }
 
         @Test
         fun `solve exercise 1`() {
-            assertThat(true).isFalse()
+            val geolines : List<GeoLine> = Files.readLinesAs("actualInput.txt", String::toGeoLine)
+            val localMap = LocalGeology(geolines)
+            assertThat(solve1(localMap, Slope(1, 3))).isEqualTo(7)
         }
 
         @Test
         fun `solve exercise 2 - test input`() {
-            val stuff = Files.readLinesAs("input.txt", String::toInt)
+            val stuff = Files.readLinesAs("input.txt", String::toGeoLine)
 
             assertThat(true).isFalse()
         }
@@ -40,3 +46,5 @@ class Day3Test {
 
     }
 }
+
+fun String.toGeoLine() = GeoLine.of(this)
