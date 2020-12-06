@@ -1,6 +1,8 @@
 package be.swsb.aoc2020
 
 import be.swsb.aoc.common.Files
+import be.swsb.aoc.common.lowerHalf
+import be.swsb.aoc.common.upperHalf
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -61,44 +63,3 @@ fun solve2(paths: List<String>): Int {
     return findMissingSeat(seatIds)
 }
 
-private fun findMissingSeat(seatIds: List<Int>) =
-    seatIds.sorted().zipWithNext().first { (a, b) -> (b - a) != 1 }.first + 1
-
-data class PossibleSeat(val rows: IntRange, val columns: IntRange)
-
-fun findSeat(boardingPass: String): Seat {
-    val possibleSeat = boardingPass.fold(PossibleSeat(0..127, 0..7)) { (rows, columns), c ->
-//        print("Applying: $c ")
-        when (c) {
-            'F' -> PossibleSeat(rows.lowerHalf(), columns)
-            'B' -> PossibleSeat(rows.upperHalf(), columns)
-            'L' -> PossibleSeat(rows, columns.lowerHalf())
-            'R' -> PossibleSeat(rows, columns.upperHalf())
-            else -> throw RuntimeException("Unknown instruction: $c")
-        }
-//            .also { println("means keeping rows ${it.rows} and columns ${it.columns}") }
-    }
-    return Seat(possibleSeat.rows.first, possibleSeat.columns.first)
-}
-
-data class Seat(val row: Int, val column: Int) {
-    val seatId: Int
-        get() = row * 8 + column
-}
-
-fun IntRange.lowerHalf(): IntRange =
-    if (this.first == this.last) {
-        this
-    } else {
-        val half = (this.last - this.first).div(2)
-        this.first .. (this.first + half)
-    }
-fun IntRange.upperHalf(): IntRange =
-    if (this.first == this.last) {
-        this
-    } else {
-        val half = (this.last - this.first).div(2)
-        (this.last - half) .. this.last
-    }
-
-fun Int.divUp(other: Int) = this.toBigDecimal().div(other.toBigDecimal()).toInt()
