@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import solve1
+import solve2
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DayTest {
@@ -32,16 +33,30 @@ class DayTest {
 
         @Test
         fun `solve exercise 2 - test input`() {
-            val stuff = Files.readLinesAs("input.txt", String::toGeoLine)
-
-            assertThat(true).isFalse()
+            val geolines : List<GeoLine> = Files.readLinesAs("input.txt", String::toGeoLine)
+            val localMap = LocalGeology(geolines)
+            val slopes = listOf(
+                Slope(1, 1),
+                Slope(1, 3),
+                Slope(1, 5),
+                Slope(1, 7),
+                Slope(2, 1)
+            )
+            assertThat(solve2(localMap, slopes)).isEqualTo(336)
         }
 
         @Test
         fun `solve exercise 2`() {
-            val stuff = Files.readLinesAs("actualInput.txt", String::toInt)
-
-            assertThat(true).isFalse()
+            val geolines : List<GeoLine> = Files.readLinesAs("actualInput.txt", String::toGeoLine)
+            val localMap = LocalGeology(geolines)
+            val slopes = listOf(
+                Slope(1, 1),
+                Slope(1, 3),
+                Slope(1, 5),
+                Slope(1, 7),
+                Slope(2, 1)
+            )
+            assertThat(solve2(localMap, slopes)).isEqualTo(336)
         }
 
     }

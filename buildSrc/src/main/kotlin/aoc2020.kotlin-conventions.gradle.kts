@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
@@ -20,4 +21,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    languageVersion = "1.4"
 }

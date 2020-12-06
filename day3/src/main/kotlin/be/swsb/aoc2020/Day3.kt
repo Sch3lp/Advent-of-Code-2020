@@ -12,6 +12,10 @@ fun solve1(map: LocalGeology, slope: Slope): Int {
     return trees
 }
 
+fun solve2(map: LocalGeology, slopes: List<Slope>): Int {
+    return slopes.map { solve1(map, it) }.reduceRight(Int::times)
+}
+
 class LocalGeology(private val _geoLines: List<GeoLine>): List<GeoLine> by _geoLines {
     fun traverse(start: Position, slope: Slope, geoThingCounter: (geoThing: GeoThing) -> Unit) {
         if (start.y + slope.down < _geoLines.size) {
