@@ -1,8 +1,6 @@
 package be.swsb.aoc2020
 
-import be.swsb.aoc.common.Files
-import be.swsb.aoc.common.debugln
-import be.swsb.aoc.common.enableDebugging
+import be.swsb.aoc.common.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -93,7 +91,3 @@ private fun findAmountOfSameAnswers(oneGroupsAnswers: List<String>) : Int {
             .sumBy { values -> if (values.size == oneGroupsAnswers.size) 1 else 0 }
     }
 }
-
-
-fun String.removeBlanks() = this.replace(" ", "")
-fun List<String>.filterNotEmpty() = this.filterNot { it.isEmpty() }
