@@ -1,8 +1,8 @@
 package be.swsb.aoc2020
 
-import be.swsb.aoc.common.Graph
+import be.swsb.aoc.common.WeightedGraph
 
-class BagRules(stringList: List<String>) : Graph<Color, Amount>() {
+class BagRules(stringList: List<String>) : WeightedGraph<Color, Amount>() {
     init {
         stringList.map(String::toBagRule)
             .associateBy { it.color }
