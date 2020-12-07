@@ -48,8 +48,8 @@ class Day6Test {
             assertThat(findAmountOfSameAnswers(listOf("ab","ac"))).isEqualTo(1)
             assertThat(findAmountOfSameAnswers(listOf("a","a","a","a"))).isEqualTo(1)
             assertThat(findAmountOfSameAnswers(listOf("b"))).isEqualTo(1)
-            assertThat(findAmountOfSameAnswers(listOf("ab","ac","bd"))).isEqualTo(0)
-            assertThat(findAmountOfSameAnswers(listOf("ab","bac","adb"))).isEqualTo(2)
+            assertThat(findAmountOfSameAnswers(listOf("ab","ac","bd"))).isEqualTo(0) // last persons answer did not answer yes to a
+            assertThat(findAmountOfSameAnswers(listOf("ab","bac","adb"))).isEqualTo(2) // both a and b were questions that people in this group answered yes to
         }
     }
 }
