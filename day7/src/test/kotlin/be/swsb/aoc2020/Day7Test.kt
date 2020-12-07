@@ -92,7 +92,7 @@ data class BagRule(val color: String, val nestedRules: List<BagRule>) {
         fun nestedBagRule(nestedBagRuleString: String): List<BagRule> {
             return nestedBagRuleString.split(",")
                 .flatMap { oneBagRuleString ->
-                    val (_, amountOfBags, bagName) = "(\\d+)\\s(.+)\\sbag+".toRegex().findAll(oneBagRuleString).toList()
+                    val (_, amountOfBags, bagName) = "(\\d+) (.+) bag".toRegex().findAll(oneBagRuleString).toList()
                         .flatMap { match -> match.groupValues }
                     (1..amountOfBags.toInt()).map { BagRule(bagName, emptyList()) }
                 }
