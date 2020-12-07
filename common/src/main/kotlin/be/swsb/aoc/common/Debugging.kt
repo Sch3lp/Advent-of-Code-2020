@@ -15,7 +15,7 @@ fun <T, R> T.debugln(block: (it: T) -> R) = if (Debugging.debug) {
     this
 }
 
-fun <T, R> T.debug(block: (it: T) -> R) = if (Debugging.debug) {
+fun <T> T.debug(block: (it: T) -> String) = if (Debugging.debug) {
     print(block(this))
     this
 } else {
