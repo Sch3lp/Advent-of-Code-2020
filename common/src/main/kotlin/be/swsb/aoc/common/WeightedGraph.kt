@@ -7,7 +7,7 @@ open class WeightedGraph<NODE, WEIGHT>(
 ) {
 
     fun addEdge(from: NODE, to: NODE? = null, weight: WEIGHT? = null) {
-        val toBeAddedEdge = if (to == null || weight == null) listOf() else listOf(to to weight)
+        val toBeAddedEdge = if (to == null || weight == null) emptyList() else listOf(to to weight)
         val edges = _nodes[from]
         if (edges == null) {
             _nodes[from] = toBeAddedEdge.toMutableList()

@@ -132,8 +132,6 @@ class Day7Test {
 }
 
 fun solve(bagRules: List<String>): Int = BagRules(bagRules).findNodesToGivenNode("shiny gold").size
-fun solve2(bagRules: List<String>): Int = BagRules(bagRules)
-    .traverseDown("shiny gold")
-    .sumBy(Pair<Color,Amount>::second)
+fun solve2(bagRules: List<String>): Int = BagRules(bagRules).traverseDown("shiny gold").sumBy(Pair<Color,Amount>::second)
 
 
