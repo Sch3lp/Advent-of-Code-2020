@@ -14,16 +14,6 @@ open class WeightedGraph<NODE, WEIGHT>(private val _nodes: MutableMap<NODE, Muta
         }
     }
 
-    fun findPath(node: NODE): Set<Pair<NODE, WEIGHT?>> {
-        val nodesToGivenNode = findNodesToGivenNode(node)
-        return nodesToGivenNode.flatMap { n ->
-            _nodes[n]
-                ?.filter { edge -> (node == edge.first) }
-                ?.map { edge -> n to edge.second }
-                ?: emptyList()
-        }.toSet()
-    }
-
     fun findNodesToGivenNode(node: NODE): Set<NODE> {
         fun findRecursive(acc: MutableSet<NODE>,
                           visitedNodes: MutableMap<NODE, Boolean>,

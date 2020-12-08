@@ -88,23 +88,6 @@ class Day7Test {
             assertThat(bagRules.findNodesToGivenNode("bold blue")).containsExactly("bright white", "light red")
             assertThat(bagRules.findNodesToGivenNode("orange")).containsExactly("light red", "bright white")
         }
-
-        @Test
-        internal fun `find path to a certain node`() {
-            val bagRules = BagRules(listOf(
-                "light red bags contain 1 bright white bag, 2 muted yellow bags, 5 orange bags.",
-                "bright white bags contain 1 bold blue bag, 3 orange bags.",
-                "muted yellow bags contain no bags.",
-                "bold blue bags contain no bags.",
-                "orange bags contain no bags."
-            ))
-            assertThat(bagRules.findPath("light red")).isEmpty()
-            enableDebugging()
-            assertThat(bagRules.findPath("bright white")).containsExactly("light red" to 1)
-            assertThat(bagRules.findPath("muted yellow")).containsExactly("light red" to 2)
-            assertThat(bagRules.findPath("bold blue")).containsExactly("bright white" to 1, "light red" to 1)
-            assertThat(bagRules.findPath("orange")).containsExactly("light red" to 5, "bright white" to 3, "light red" to 1)
-        }
     }
 
 }
