@@ -11,6 +11,23 @@ class BagRules(stringList: List<String>) : WeightedGraph<Color, Amount>() {
                 vertices?.forEach { v -> addEdge(color, v.first, v.second) } ?: addEdge(color)
             }
     }
+
+
+    fun traverseDown(node: Color): List<Pair<Color, Amount>> {
+        val edges = _nodes[node]
+
+        return if (edges == null) {
+            emptyList()
+        } else {
+            edges
+                .fold(emptyList()) { acc, edge ->
+                    val mutableAcc = acc.toMutableList()
+                    mutableAcc.add(edge)
+                    mutableAcc.addAll(traverseDown(edge.first).map { (n, w) -> n to edge.second.times(w) })
+                    mutableAcc
+                }
+        }
+    }
 }
 
 typealias Amount = Int
@@ -20,7 +37,8 @@ typealias Color = String
 fun String.toBagRule(): BagRule = BagRule.fromString(this)
 data class BagRule(
     val color: Color,
-    val containedBags: List<Pair<Color,Amount>>?) {
+    val containedBags: List<Pair<Color, Amount>>?
+) {
 
     companion object {
         fun fromString(s: String): BagRule {

@@ -2,10 +2,12 @@ package be.swsb.aoc.common
 
 // https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-2-weighted-graph/
 // Weighted Graph
-open class WeightedGraph<NODE, WEIGHT>(private val _nodes: MutableMap<NODE, MutableList<Pair<NODE, WEIGHT?>>> = emptyMap<NODE, MutableList<Pair<NODE, WEIGHT?>>>().toMutableMap()) {
+open class WeightedGraph<NODE, WEIGHT>(
+    protected val _nodes: MutableMap<NODE, MutableList<Pair<NODE, WEIGHT>>> = emptyMap<NODE, MutableList<Pair<NODE, WEIGHT>>>().toMutableMap()
+) {
 
     fun addEdge(from: NODE, to: NODE? = null, weight: WEIGHT? = null) {
-        val toBeAddedEdge = to?.let { listOf(it to weight) } ?: listOf()
+        val toBeAddedEdge = if (to == null || weight == null) listOf() else listOf(to to weight)
         val edges = _nodes[from]
         if (edges == null) {
             _nodes[from] = toBeAddedEdge.toMutableList()
