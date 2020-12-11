@@ -22,3 +22,5 @@ fun IntRange.upperHalf(): IntRange =
         val half = (this.last - this.first).div(2)
         (this.last - half) .. this.last
     }
+
+infix operator fun Int?.times(other: Int?) = this?.times(other ?: 1) ?: other
